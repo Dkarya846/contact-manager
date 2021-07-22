@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-export default function ContactForm(props) {
+import * as actions from "./actions";
+import { connect } from "react-redux";
+
+function ContactForm(props) {
   const [person, setPerson] = useState("");
   const [number, setNumber] = useState("");
 
@@ -14,7 +17,7 @@ export default function ContactForm(props) {
       !isNaN(number) &&
       number.length === 10
     ) {
-      props.handleSubmit({ name: person, number });
+      props.addContact({ name: person, number });
       setPerson("");
       setNumber("");
     }
@@ -38,3 +41,14 @@ export default function ContactForm(props) {
     </form>
   );
 }
+
+function mapStateToProps(state) {
+  return { contacts: state.contacts };
+}
+
+const mapDispatchToProps = {
+  addContact: actions.addContact,
+  deleteContact: actions.deleteContact,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
