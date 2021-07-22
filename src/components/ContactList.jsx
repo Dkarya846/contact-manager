@@ -6,9 +6,9 @@ function ContactList(props) {
   const arr = props.contacts;
   const listItems = arr.map((contact, index) => (
     <li className="contact" key={index}>
-      <span>{contact.name} </span>{" "}
-      <span style={{ display: "flex", alignItems: "center" }}>
-        {contact.number}{" "}
+      <span>{contact.name} </span>{' '}
+      <span style={{ display: 'flex', alignItems: 'center' }}>
+        {contact.number}{' '}
         <span
           onClick={() => props.deleteContact(contact)}
           className="delete-button"
